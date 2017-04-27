@@ -15,6 +15,7 @@
         <div id="chart2" style="width: 1200px;height:500px;"></div>
         <div id="chart3"style="width: 1200px;height:500px;"></div>
         <div id="chart4"style="width: 1200px;height:500px;"></div>
+        <div id="chart5" style="width: 1200px; height: 500px;"></div>
            <!--chart 2 pm2.5 script-->
             <script type="text/javascript">
             $(function() {
@@ -202,6 +203,83 @@ option = {
             myChart4.setOption(option);
  });
             </script>
+             <!--chart 5 pollutants-->
+            <script type="text/javascript">
+            var myChart5 = echarts.init(document.getElementById('chart5'));
+            option = {
+    backgroundColor: '#2c343c',
 
+    title: {
+        text: 'Pollutants discharged by road transportationCustomized Pie',
+        subtext:'Unit: 100 Tonnes',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#ccc'
+        }
+    },
+
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+
+    visualMap: {
+        show: false,
+        min: 80,
+        max: 600,
+        inRange: {
+            colorLightness: [0, 1]
+        }
+    },
+    series : [
+        {
+            name:'Pollutants discharged by road transportation',
+            type:'pie',
+            radius : '55%',
+            center: ['50%', '50%'],
+            data:[
+                {value:212, name:'NOx'},
+                {value:8.3, name:'RSP'},
+                {value:7.6, name:'FSP'},
+                {value:53.8, name:'VOC'},
+                {value:394, name:'CO'}
+            ].sort(function (a, b) { return a.value - b.value}),
+            roseType: 'angle',
+            label: {
+                normal: {
+                    textStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    lineStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    },
+                    smooth: 0.2,
+                    length: 10,
+                    length2: 20
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: '#c23531',
+                    shadowBlur: 200,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+
+            animationType: 'scale',
+            animationEasing: 'elasticOut',
+            animationDelay: function (idx) {
+                return Math.random() * 200;
+            }
+        }
+    ]
+};    
+            myChart5.setOption(option);
+            </script>
     </body>
 </html>
